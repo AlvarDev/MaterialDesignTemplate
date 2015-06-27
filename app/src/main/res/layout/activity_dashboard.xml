@@ -2,36 +2,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rlaContainer"
     tools:context="com.gdglima.materialdesigntemplate.DashboardActivity">
 
-    <LinearLayout
-        android:id="@+id/llaTemp"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/add"
-            android:text="Add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
-            android:id="@+id/remove"
-            android:text="remove"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
-            android:id="@+id/update"
-            android:text="update"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+        android:minHeight="?android:attr/actionBarSize"
+        android:background="@color/primary"/>
+
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/my_recycler_view"
+        android:id="@+id/rvOptions"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/llaTemp"/>
+        android:paddingTop="1dp"
+        android:layout_below="@+id/toolbar"
+        android:paddingLeft="1dp"/>
 
 </RelativeLayout>

@@ -20,6 +20,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         ButterKnife.inject(this);
 
+        imtTemp.setBackgroundResource(R.color.purple);
 
         imtTemp.setOnClickListener(new View.OnClickListener() {
             @Override

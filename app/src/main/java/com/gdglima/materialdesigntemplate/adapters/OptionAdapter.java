@@ -4,47 +4,52 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gdglima.materialdesigntemplate.R;
+import com.gdglima.materialdesigntemplate.entities.OptionEntity;
 
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements View.OnClickListener{
+public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder>
+        implements View.OnClickListener{
 
-    private List<String> mDataset;
+    private List<OptionEntity> mData;
     private View.OnClickListener listener;
 
-    public MyAdapter(List<String> myDataset) {
-        mDataset = myDataset;
+    public OptionAdapter(List<OptionEntity> myData) {
+        mData = myData;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tviTextItem;
-        public ImageView iviImageItem;
+        public TextView title;
+        public TextView cap;
+
         public ViewHolder(View v) {
             super(v);
-            tviTextItem = (TextView)v.findViewById(R.id.tviTextItem);
-            iviImageItem = (ImageView)v.findViewById(R.id.iviImageItem);
+            title = (TextView)v.findViewById(R.id.title);
+            cap = (TextView)v.findViewById(R.id.cap);
         }
     }
 
     @Override
-    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_recycle_view_item, parent, false);
+    public OptionAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.layout_recycle_view_item, parent, false);
         view.setOnClickListener(this);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.tviTextItem.setText(mDataset.get(position));
+        holder.title.setText(mData.get(position).getTitle());
+        holder.cap.setText(mData.get(position).getCap());
+        holder.cap.setBackgroundResource(mData.get(position).getIdColor());
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return mData.size();
     }
 
     public void setOnClickListener(View.OnClickListener listener) {

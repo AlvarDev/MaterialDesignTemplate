@@ -1,18 +1,24 @@
 package com.gdglima.materialdesigntemplate;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
+import android.transition.Explode;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.view.Window;
+import android.widget.Toast;
 
-import com.gdglima.materialdesigntemplate.adapters.MyAdapter;
+import com.gdglima.materialdesigntemplate.adapters.OptionAdapter;
+import com.gdglima.materialdesigntemplate.entities.OptionEntity;
+import com.gdglima.materialdesigntemplate.utils.Const;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -21,78 +27,117 @@ import butterknife.InjectView;
 
 public class DashboardActivity extends AppCompatActivity{
 
-    private static final String TAG = "DashboardActivity";
-    private RecyclerView mRecyclerView;
-    private MyAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    @InjectView(R.id.add) Button add;
-    @InjectView(R.id.remove) Button remove;
-    @InjectView(R.id.update) Button update;
-
-
+    @InjectView(R.id.toolbar) Toolbar mToolbar;
+    @InjectView(R.id.rvOptions) RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getContentTransitionFeature();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         ButterKnife.inject(this);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        setRecyclerView();
+        setToolBar();
+    }
+
+    private void getContentTransitionFeature(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        }
+    }
+
+    private void setToolBar() {
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        mToolbar.setTitle(getString(R.string.app_name));
+        mToolbar.setNavigationIcon(R.mipmap.ic_launcher);
+        setSupportActionBar(mToolbar);
+    }
+
+    private void setRecyclerView(){
+
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new GridLayoutManager(this,2);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this,2);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        final List<OptionEntity> myData = Const.getOptionsDashboard();
 
-        final List<String> myDataset = new ArrayList<String>();
-
-        for(int i=0; i<10; i++){
-            myDataset.add("dota "+i);
-        }
-        mAdapter = new MyAdapter(myDataset);
+        OptionAdapter mAdapter = new OptionAdapter(myData);
         mAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                TextView text = (TextView) v.findViewById(R.id.tviTextItem);
-                Log.i(TAG, "text "+ text.getText().toString());
-
+                setActions(mRecyclerView.getChildLayoutPosition(v));
             }
         });
+
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
+    }
 
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myDataset.add(1, "Peru");
-                mAdapter.notifyItemInserted(1);
-            }
-        });
+    private void setActions(int action){
 
-        remove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(myDataset.size()>1) {
-                    myDataset.remove(1);
-                    mAdapter.notifyItemRemoved(1);
-                }
-            }
-        });
+        switch (action){
+            case Const.RV_LINEAR:
+                goToActivity(RecyclerViewLinearActivity.class);
+                break;
+            case Const.RV_STAGGERED:
+                goToActivity(RecyclerViewStaggeredActivity.class);
+                break;
+            case Const.RV_GRID:
+                showMessage("This Activity is already a RecyclerView GridLayoutManager Example");
+                break;
+            case Const.COLLAPSING_TOOLBAR:
+                goToActivity(CollapsingToolbarActivity.class);
+                break;
+            case Const.NAV_VIEW:
+                goToActivity(NavViewActivity.class);
+                break;
+            case Const.TABS:
+                goToActivity(TabsActivity.class);
+                break;
+            case Const.F_ACTION_BUTON:
+                goToActivity(FloatsActivity.class);
+                break;
+            case Const.F_EDIT_TEXT:
+                goToActivity(FloatsActivity.class);
+                break;
+            case Const.EXPLODE_ANIMATION:
+                goToActivity(ExplodeAnimationActivity.class);
+                break;
+            case Const.SNACK:
+                showSnack("This is a Snack");
+                break;
+        }
 
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(myDataset.size()>2) {
-                    String aux = myDataset.get(1);
-                    myDataset.set(1, myDataset.get(2));
-                    myDataset.set(2, aux);
+    }
 
-                    mAdapter.notifyItemMoved(1, 2);
-                }
-            }
-        });
+    private void goToActivity(Class<?> cls){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setExitTransition(new Explode());
+            Intent intent = new Intent(DashboardActivity.this, cls);
+            startActivity(intent,
+                    ActivityOptions.makeSceneTransitionAnimation(DashboardActivity.this).toBundle());
 
+        } else {
+            Intent intent = new Intent(DashboardActivity.this, cls);
+            startActivity(intent);
+        }
+    }
+
+    private void showMessage(String message){
+        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+    }
+
+    private void showSnack(String message){
+        Snackbar.make(findViewById(R.id.rlaContainer), message, Snackbar.LENGTH_LONG)
+                .setAction("Ok", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                })
+                .show();
     }
 
 

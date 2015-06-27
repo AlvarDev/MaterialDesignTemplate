@@ -2,22 +2,27 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <ImageView
-        android:id="@+id/iviImageItem"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/gdglima"
-        android:scaleType="center"
-        android:contentDescription="@string/app_name"/>
+    android:layout_height="wrap_content"
+    android:paddingBottom="1dp"
+    android:paddingRight="1dp"
+    android:paddingEnd="1dp">
 
     <TextView
-        android:id="@+id/tviTextItem"
+        android:id="@+id/cap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:minHeight="150dp"
+        android:textSize="48sp"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
-        android:background="@color/primary"
+        android:textColor="@color/white"
+        android:padding="8dp"
         android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

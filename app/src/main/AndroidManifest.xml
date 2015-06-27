@@ -20,6 +20,34 @@
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard" >
         </activity>
+        <activity
+            android:name=".RecyclerViewLinearActivity"
+            android:label="@string/title_activity_recycler_view_linear" >
+        </activity>
+        <activity
+            android:name=".RecyclerViewStaggeredActivity"
+            android:label="@string/title_activity_recycler_view_staggered" >
+        </activity>
+        <activity
+            android:name=".CollapsingToolbarActivity"
+            android:label="@string/title_activity_collapsing_toolbar" >
+        </activity>
+        <activity
+            android:name=".NavViewActivity"
+            android:label="@string/title_activity_nav_view" >
+        </activity>
+        <activity
+            android:name=".TabsActivity"
+            android:label="@string/title_activity_tabs" >
+        </activity>
+        <activity
+            android:name=".FloatsActivity"
+            android:label="@string/title_activity_floats" >
+        </activity>
+        <activity
+            android:name=".ExplodeAnimationActivity"
+            android:label="@string/title_activity_explode_animation" >
+        </activity>
     </application>
 
 </manifest>

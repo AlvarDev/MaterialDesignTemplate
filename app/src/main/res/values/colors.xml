@@ -9,5 +9,15 @@
   <color name="secondary_text">#727272</color>
   <color name="icons">#FFFFFF</color>
   <color name="divider">#B6B6B6</color>
-    <color name="white">#FFFFFF</color>
+  <color name="white">#FFFFFF</color>
+
+  <color name="purple">#9C27B0</color>
+  <color name="deep_purple">#673AB7</color>
+  <color name="indigo">#3F51B5</color>
+  <color name="green">#4CAF50</color>
+  <color name="orange">#FF5722</color>
+  <color name="ambar">#FFC107</color>
+  <color name="bg_sky_blue">#0097a7</color>
+  <color name="bg_green_2">#0f9d58</color>
+  <color name="bg_orange">#db4437</color>
 </resources>
