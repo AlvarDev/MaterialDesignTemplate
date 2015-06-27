@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.gdglima.materialdesigntemplate.R;
@@ -22,11 +23,14 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        public RelativeLayout rlaItemContainer;
         public TextView title;
         public TextView cap;
 
         public ViewHolder(View v) {
             super(v);
+            rlaItemContainer = (RelativeLayout)v;
             title = (TextView)v.findViewById(R.id.title);
             cap = (TextView)v.findViewById(R.id.cap);
         }
@@ -42,9 +46,11 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.rlaItemContainer.setBackgroundResource(mData.get(position).getIdColor());
         holder.title.setText(mData.get(position).getTitle());
+        //holder.title.setBackgroundResource(mData.get(position).getIdColor());
         holder.cap.setText(mData.get(position).getCap());
-        holder.cap.setBackgroundResource(mData.get(position).getIdColor());
+        //holder.cap.setBackgroundResource(mData.get(position).getIdColor());
     }
 
     @Override

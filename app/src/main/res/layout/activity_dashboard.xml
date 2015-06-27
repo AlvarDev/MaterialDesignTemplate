@@ -12,8 +12,6 @@
         android:minHeight="?android:attr/actionBarSize"
         android:background="@color/primary"/>
 
-
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvOptions"
         android:scrollbars="vertical"
