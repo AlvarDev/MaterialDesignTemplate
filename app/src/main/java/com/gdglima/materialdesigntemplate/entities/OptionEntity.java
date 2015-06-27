@@ -5,13 +5,11 @@ import java.io.Serializable;
 public class OptionEntity implements Serializable{
 
     private String title;
-    private String cap;
-    private int idColor;
+    private int idImage;
 
-    public OptionEntity(String title, String cap, int idColor) {
+    public OptionEntity(String title, int idImage) {
         this.title = title;
-        this.cap = cap;
-        this.idColor = idColor;
+        this.idImage = idImage;
     }
 
     public String getTitle() {
@@ -22,28 +20,19 @@ public class OptionEntity implements Serializable{
         this.title = title;
     }
 
-    public String getCap() {
-        return cap;
+    public int getIdImage() {
+        return idImage;
     }
 
-    public void setCap(String cap) {
-        this.cap = cap;
-    }
-
-    public int getIdColor() {
-        return idColor;
-    }
-
-    public void setIdColor(int idColor) {
-        this.idColor = idColor;
+    public void setIdImage(int idImage) {
+        this.idImage = idImage;
     }
 
     @Override
     public String toString() {
         return "OptionEntity{" +
                 "title='" + title + '\'' +
-                ", cap='" + cap + '\'' +
-                ", idColor=" + idColor +
+                ", idImage=" + idImage +
                 '}';
     }
 }

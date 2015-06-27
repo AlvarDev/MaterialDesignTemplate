@@ -10,4 +10,5 @@
     <string name="title_activity_tabs">Tabs</string>
     <string name="title_activity_floats">Floats</string>
     <string name="title_activity_explode_animation">ExplodeAnimation</string>
+    <string name="s_click_me">Click the logo :)</string>
 </resources>

@@ -60,7 +60,7 @@ public class DashboardActivity extends AppCompatActivity{
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this,2);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        final List<OptionEntity> myData = Const.getOptionsDashboard();
+        final List<OptionEntity> myData = Const.getOptionsDashboard(DashboardActivity.this);
 
         OptionAdapter mAdapter = new OptionAdapter(myData);
         mAdapter.setOnClickListener(new View.OnClickListener() {

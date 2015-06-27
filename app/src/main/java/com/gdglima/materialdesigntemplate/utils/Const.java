@@ -1,5 +1,7 @@
 package com.gdglima.materialdesigntemplate.utils;
 
+import android.content.Context;
+
 import com.gdglima.materialdesigntemplate.R;
 import com.gdglima.materialdesigntemplate.entities.OptionEntity;
 
@@ -19,19 +21,19 @@ public class Const {
     public static final int EXPLODE_ANIMATION = 8;
     public static final int SNACK = 9;
 
-    public static List<OptionEntity> getOptionsDashboard(){
+    public static List<OptionEntity> getOptionsDashboard(Context context){
         List<OptionEntity> options = new ArrayList<OptionEntity>();
 
-        options.add(new OptionEntity("RecyclerView - Linear", "L", R.color.bg_green_2));
-        options.add(new OptionEntity("RecyclerView - Staggered", "S", R.color.bg_sky_blue));
-        options.add(new OptionEntity("RecyclerView - Grid", "G", R.color.indigo));
-        options.add(new OptionEntity("Collapsing Toolbars", "C", R.color.green));
-        options.add(new OptionEntity("Navigation View", "N", R.color.ambar));
-        options.add(new OptionEntity("Tabs", "T", R.color.orange));
-        options.add(new OptionEntity("Floating Action Button", "F", R.color.indigo));
-        options.add(new OptionEntity("Floating labels for editing text", "E", R.color.green));
-        options.add(new OptionEntity("Explode Animation", "A", R.color.deep_purple));
-        options.add(new OptionEntity("Snack", "S", R.color.bg_orange));
+        options.add(new OptionEntity("RecyclerView - Linear", R.drawable.ioe1));
+        options.add(new OptionEntity("RecyclerView - Staggered", R.drawable.ioe2));
+        options.add(new OptionEntity("RecyclerView - Grid", R.drawable.ioe3));
+        options.add(new OptionEntity("Collapsing Toolbars", R.drawable.ioe4));
+        options.add(new OptionEntity("Navigation View", R.drawable.ioe5));
+        options.add(new OptionEntity("Tabs", R.drawable.ioe6));
+        options.add(new OptionEntity("Floating Action Button", R.drawable.ioe7));
+        options.add(new OptionEntity("Floating labels for editing text", R.drawable.ioe8));
+        options.add(new OptionEntity("Explode Animation", R.drawable.ioe9));
+        options.add(new OptionEntity("Snack", R.drawable.ioe10));
 
         return options;
     }

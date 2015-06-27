@@ -46,7 +46,7 @@ public class RecyclerViewStaggeredActivity extends AppCompatActivity {
         RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.HORIZONTAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        final List<OptionEntity> myData = Const.getOptionsDashboard();
+        final List<OptionEntity> myData = Const.getOptionsDashboard(RecyclerViewStaggeredActivity.this);
 
         OptionAdapter mAdapter = new OptionAdapter(myData);
         mAdapter.setOnClickListener(new View.OnClickListener() {
