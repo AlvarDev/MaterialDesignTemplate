@@ -4,6 +4,7 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -27,6 +28,7 @@ import butterknife.InjectView;
 
 public class DashboardActivity extends AppCompatActivity{
 
+    @InjectView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsing_toolbar;
     @InjectView(R.id.toolbar) Toolbar mToolbar;
     @InjectView(R.id.rvOptions) RecyclerView mRecyclerView;
 
@@ -48,10 +50,10 @@ public class DashboardActivity extends AppCompatActivity{
     }
 
     private void setToolBar() {
-        mToolbar.setTitleTextColor(getResources().getColor(R.color.white));
-        mToolbar.setTitle(getString(R.string.app_name));
-        mToolbar.setNavigationIcon(R.mipmap.ic_launcher);
         setSupportActionBar(mToolbar);
+        collapsing_toolbar.setTitle(getString(R.string.app_name));
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        //mToolbar.setNavigationIcon(R.mipmap.ic_launcher);
     }
 
     private void setRecyclerView(){
