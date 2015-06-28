@@ -4,17 +4,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ImageView;
 
-import com.gdglima.materialdesigntemplate.adapters.OptionAdapter;
-import com.gdglima.materialdesigntemplate.entities.OptionEntity;
-import com.gdglima.materialdesigntemplate.utils.Const;
+import com.gdglima.materialdesigntemplate.adapters.TextAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -25,7 +22,7 @@ public class CollapsingToolbarActivity extends AppCompatActivity {
     @InjectView(R.id.ctToolbar) CollapsingToolbarLayout ctToolbar;
     @InjectView(R.id.toolbar) Toolbar toolbar;
     @InjectView(R.id.zig) ImageView zig;
-    @InjectView(R.id.rvOptions)RecyclerView rvOptions;
+    @InjectView(R.id.rvOptions) RecyclerView rvOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +31,8 @@ public class CollapsingToolbarActivity extends AppCompatActivity {
         ButterKnife.inject(this);
 
         validateTransitions();
-        setToolBar();
         setRecyclerView();
+        setToolBar();
     }
 
     private void validateTransitions(){
@@ -45,31 +42,27 @@ public class CollapsingToolbarActivity extends AppCompatActivity {
     }
 
     private void setToolBar() {
-        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         ctToolbar.setTitle(getString(R.string.title_activity_collapsing_toolbar));
-        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
+        ctToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
+        ctToolbar.setExpandedTitleColor(getResources().getColor(R.color.white));
+
+        toolbar.setLogo(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
     }
 
     private void setRecyclerView(){
-
         rvOptions.setHasFixedSize(true);
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this,2);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvOptions.setLayoutManager(mLayoutManager);
 
-        final List<OptionEntity> myData = Const.getOptionsDashboard();
+        List<String> myData = new ArrayList<>();
+        myData.add(getString(R.string.some_text));
 
-        OptionAdapter mAdapter = new OptionAdapter(myData);
-        mAdapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
+        TextAdapter mAdapter = new TextAdapter(myData);
         rvOptions.setAdapter(mAdapter);
-        rvOptions.setItemAnimator(new DefaultItemAnimator());
 
     }
+
+
 
 }

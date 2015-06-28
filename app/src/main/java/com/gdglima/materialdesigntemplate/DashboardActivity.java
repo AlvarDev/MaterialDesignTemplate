@@ -52,8 +52,6 @@ public class DashboardActivity extends AppCompatActivity{
     private void setToolBar() {
         setSupportActionBar(toolbar);
         ctToolbar.setTitle(getString(R.string.app_name));
-        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
-        //mToolbar.setNavigationIcon(R.mipmap.ic_launcher);
     }
 
     private void setRecyclerView(){
