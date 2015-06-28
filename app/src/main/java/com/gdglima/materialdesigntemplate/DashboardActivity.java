@@ -28,8 +28,8 @@ import butterknife.InjectView;
 
 public class DashboardActivity extends AppCompatActivity{
 
-    @InjectView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsing_toolbar;
-    @InjectView(R.id.toolbar) Toolbar mToolbar;
+    @InjectView(R.id.ctToolbar) CollapsingToolbarLayout ctToolbar;
+    @InjectView(R.id.toolbar) Toolbar toolbar;
     @InjectView(R.id.rvOptions) RecyclerView rvOptions;
 
     @Override
@@ -50,9 +50,9 @@ public class DashboardActivity extends AppCompatActivity{
     }
 
     private void setToolBar() {
-        setSupportActionBar(mToolbar);
-        collapsing_toolbar.setTitle(getString(R.string.app_name));
-        mToolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        setSupportActionBar(toolbar);
+        ctToolbar.setTitle(getString(R.string.app_name));
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         //mToolbar.setNavigationIcon(R.mipmap.ic_launcher);
     }
 
