@@ -10,4 +10,14 @@
         android:minHeight="?android:attr/actionBarSize"
         android:background="@color/primary"/>
 
+
+    <ImageView
+        android:id="@+id/zig"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ioe4"
+        android:contentDescription="@string/app_name"/>
+
 </RelativeLayout>

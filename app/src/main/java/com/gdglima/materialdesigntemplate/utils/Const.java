@@ -21,7 +21,7 @@ public class Const {
     public static final int EXPLODE_ANIMATION = 8;
     public static final int SNACK = 9;
 
-    public static List<OptionEntity> getOptionsDashboard(Context context){
+    public static List<OptionEntity> getOptionsDashboard(){
         List<OptionEntity> options = new ArrayList<OptionEntity>();
 
         options.add(new OptionEntity("RecyclerView - Linear", R.drawable.ioe1));

@@ -30,7 +30,7 @@ public class DashboardActivity extends AppCompatActivity{
 
     @InjectView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsing_toolbar;
     @InjectView(R.id.toolbar) Toolbar mToolbar;
-    @InjectView(R.id.rvOptions) RecyclerView mRecyclerView;
+    @InjectView(R.id.rvOptions) RecyclerView rvOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,54 +58,54 @@ public class DashboardActivity extends AppCompatActivity{
 
     private void setRecyclerView(){
 
-        mRecyclerView.setHasFixedSize(true);
+        rvOptions.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this,2);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        rvOptions.setLayoutManager(mLayoutManager);
 
-        final List<OptionEntity> myData = Const.getOptionsDashboard(DashboardActivity.this);
+        final List<OptionEntity> myData = Const.getOptionsDashboard();
 
         OptionAdapter mAdapter = new OptionAdapter(myData);
         mAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                setActions(mRecyclerView.getChildLayoutPosition(v));
+            public void onClick(View view) {
+                setActions(rvOptions.getChildLayoutPosition(view),view);
             }
         });
 
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        rvOptions.setAdapter(mAdapter);
+        rvOptions.setItemAnimator(new DefaultItemAnimator());
 
     }
 
-    private void setActions(int action){
+    private void setActions(int action, View view){
 
         switch (action){
             case Const.RV_LINEAR:
-                goToActivity(RecyclerViewLinearActivity.class);
+                goToActivity(RecyclerViewLinearActivity.class, null);
                 break;
             case Const.RV_STAGGERED:
-                goToActivity(RecyclerViewStaggeredActivity.class);
+                goToActivity(RecyclerViewStaggeredActivity.class, null);
                 break;
             case Const.RV_GRID:
                 showMessage("This Activity is already a RecyclerView GridLayoutManager Example");
                 break;
             case Const.COLLAPSING_TOOLBAR:
-                goToActivity(CollapsingToolbarActivity.class);
+                goToActivity(CollapsingToolbarActivity.class, view);
                 break;
             case Const.NAV_VIEW:
-                goToActivity(NavViewActivity.class);
+                goToActivity(NavViewActivity.class, view);
                 break;
             case Const.TABS:
-                goToActivity(TabsActivity.class);
+                goToActivity(TabsActivity.class, view);
                 break;
             case Const.F_ACTION_BUTON:
-                goToActivity(FloatsActivity.class);
+                goToActivity(FloatsActivity.class,null);
                 break;
             case Const.F_EDIT_TEXT:
-                goToActivity(FloatsActivity.class);
+                goToActivity(FloatsActivity.class, null);
                 break;
             case Const.EXPLODE_ANIMATION:
-                goToActivity(ExplodeAnimationActivity.class);
+                goToActivity(ExplodeAnimationActivity.class, null);
                 break;
             case Const.SNACK:
                 showSnack("This is a Snack");
@@ -114,12 +114,18 @@ public class DashboardActivity extends AppCompatActivity{
 
     }
 
-    private void goToActivity(Class<?> cls){
+    private void goToActivity(Class<?> cls, View view){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setExitTransition(new Explode());
             Intent intent = new Intent(DashboardActivity.this, cls);
-            startActivity(intent,
-                    ActivityOptions.makeSceneTransitionAnimation(DashboardActivity.this).toBundle());
+
+            ActivityOptions options = view != null ?
+                    ActivityOptions.makeSceneTransitionAnimation(
+                    DashboardActivity.this, view, "view") :
+                    ActivityOptions.makeSceneTransitionAnimation(
+                    DashboardActivity.this);
+
+            startActivity(intent,options.toBundle());
 
         } else {
             Intent intent = new Intent(DashboardActivity.this, cls);

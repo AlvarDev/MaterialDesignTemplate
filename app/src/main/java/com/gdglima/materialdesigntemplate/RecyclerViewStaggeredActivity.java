@@ -1,5 +1,6 @@
 package com.gdglima.materialdesigntemplate;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -21,7 +22,7 @@ import butterknife.InjectView;
 public class RecyclerViewStaggeredActivity extends AppCompatActivity {
 
     @InjectView(R.id.toolbar) Toolbar mToolbar;
-    @InjectView(R.id.rvOptions) RecyclerView mRecyclerView;
+    @InjectView(R.id.rvOptions) RecyclerView rvOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +43,11 @@ public class RecyclerViewStaggeredActivity extends AppCompatActivity {
 
     private void setRecyclerView(){
 
-        mRecyclerView.setHasFixedSize(true);
+        rvOptions.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.HORIZONTAL);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        rvOptions.setLayoutManager(mLayoutManager);
 
-        final List<OptionEntity> myData = Const.getOptionsDashboard(RecyclerViewStaggeredActivity.this);
+        final List<OptionEntity> myData = Const.getOptionsDashboard();
 
         OptionAdapter mAdapter = new OptionAdapter(myData);
         mAdapter.setOnClickListener(new View.OnClickListener() {
@@ -56,8 +57,8 @@ public class RecyclerViewStaggeredActivity extends AppCompatActivity {
             }
         });
 
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        rvOptions.setAdapter(mAdapter);
+        rvOptions.setItemAnimator(new DefaultItemAnimator());
 
     }
 
