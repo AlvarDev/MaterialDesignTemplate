@@ -31,7 +31,7 @@ public class Const {
         options.add(new OptionEntity("Navigation View", R.drawable.ioe5));
         options.add(new OptionEntity("Tabs", R.drawable.ioe6));
         options.add(new OptionEntity("Floating Action Button", R.drawable.ioe7));
-        options.add(new OptionEntity("Floating labels for editing text", R.drawable.ioe8));
+        options.add(new OptionEntity("Floating labels", R.drawable.ioe8));
         options.add(new OptionEntity("Explode Animation", R.drawable.ioe9));
         options.add(new OptionEntity("Snack", R.drawable.ioe10));
 

@@ -56,6 +56,7 @@ public class CollapsingToolbarActivity extends AppCompatActivity {
         rvOptions.setLayoutManager(mLayoutManager);
 
         List<String> myData = new ArrayList<>();
+        myData.add(getString(R.string.s_message));
         myData.add(getString(R.string.some_text));
 
         TextAdapter mAdapter = new TextAdapter(myData);

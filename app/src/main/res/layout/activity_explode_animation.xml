@@ -10,4 +10,12 @@
         android:minHeight="?android:attr/actionBarSize"
         android:background="@color/primary"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/s_message_after_explode"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:layout_centerInParent="true"/>
+
 </RelativeLayout>

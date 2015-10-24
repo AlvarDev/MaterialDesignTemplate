@@ -48,6 +48,10 @@
             android:name=".ExplodeAnimationActivity"
             android:label="@string/title_activity_explode_animation" >
         </activity>
+        <activity android:name=".FloatLabelActivity" >
+        </activity>
+        <activity android:name=".SnackActivity" >
+        </activity>
     </application>
 
 </manifest>

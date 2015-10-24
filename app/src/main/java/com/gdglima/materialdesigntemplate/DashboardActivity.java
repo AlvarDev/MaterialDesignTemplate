@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.gdglima.materialdesigntemplate.adapters.OptionAdapter;
@@ -31,6 +32,7 @@ public class DashboardActivity extends AppCompatActivity{
     @InjectView(R.id.ctToolbar) CollapsingToolbarLayout ctToolbar;
     @InjectView(R.id.toolbar) Toolbar toolbar;
     @InjectView(R.id.rvOptions) RecyclerView rvOptions;
+    @InjectView(R.id.logoGDG) ImageView logoGDG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class DashboardActivity extends AppCompatActivity{
         setContentView(R.layout.activity_dashboard);
         ButterKnife.inject(this);
 
+        validateTransitions();
         setRecyclerView();
         setToolBar();
     }
@@ -49,9 +52,17 @@ public class DashboardActivity extends AppCompatActivity{
         }
     }
 
+    private void validateTransitions(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            logoGDG.setTransitionName("view");
+        }
+    }
+
     private void setToolBar() {
         setSupportActionBar(toolbar);
         ctToolbar.setTitle(getString(R.string.app_name));
+        ctToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
+        ctToolbar.setExpandedTitleColor(getResources().getColor(R.color.bg_transparent));
     }
 
     private void setRecyclerView(){
@@ -85,7 +96,7 @@ public class DashboardActivity extends AppCompatActivity{
                 goToActivity(RecyclerViewStaggeredActivity.class, null);
                 break;
             case Const.RV_GRID:
-                showMessage("This Activity is already a RecyclerView GridLayoutManager Example");
+                showSnack("This Activity is already a RecyclerView GridLayoutManager Example");
                 break;
             case Const.COLLAPSING_TOOLBAR:
                 goToActivity(CollapsingToolbarActivity.class, view);
@@ -94,19 +105,19 @@ public class DashboardActivity extends AppCompatActivity{
                 goToActivity(NavViewActivity.class, view);
                 break;
             case Const.TABS:
-                goToActivity(TabsActivity.class, view);
+                goToActivity(TabsActivity.class, null);
                 break;
             case Const.F_ACTION_BUTON:
                 goToActivity(FloatsActivity.class,null);
                 break;
             case Const.F_EDIT_TEXT:
-                goToActivity(FloatsActivity.class, null);
+                goToActivity(FloatLabelActivity.class, null);
                 break;
             case Const.EXPLODE_ANIMATION:
                 goToActivity(ExplodeAnimationActivity.class, null);
                 break;
             case Const.SNACK:
-                showSnack("This is a Snack");
+                goToActivity(SnackActivity.class, null);
                 break;
         }
 
@@ -131,18 +142,9 @@ public class DashboardActivity extends AppCompatActivity{
         }
     }
 
-    private void showMessage(String message){
-        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
-    }
-
     private void showSnack(String message){
         Snackbar.make(findViewById(R.id.rlaContainer), message, Snackbar.LENGTH_LONG)
-                .setAction("Ok", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                })
+                .setAction("", null)
                 .show();
     }
 

@@ -28,7 +28,7 @@ public class SplashActivity extends AppCompatActivity {
         imtTemp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToActivity(DashboardActivity.class);
+                goToActivity(DashboardActivity.class, imtTemp);
             }
         });
 
@@ -40,12 +40,18 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
-    private void goToActivity(Class<?> cls){
+    private void goToActivity(Class<?> cls, View view){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setExitTransition(new Explode());
             Intent intent = new Intent(SplashActivity.this, cls);
-            startActivity(intent,
-                    ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+
+            ActivityOptions options = view != null ?
+                    ActivityOptions.makeSceneTransitionAnimation(
+                            SplashActivity.this, view, "view") :
+                    ActivityOptions.makeSceneTransitionAnimation(
+                            SplashActivity.this);
+
+            startActivity(intent,options.toBundle());
 
         } else {
             Intent intent = new Intent(SplashActivity.this, cls);

@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.gdglima.materialdesigntemplate.FloatsActivity">
@@ -9,5 +10,34 @@
         android:layout_height="wrap_content"
         android:minHeight="?android:attr/actionBarSize"
         android:background="@color/primary"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/s_click_counter"
+        android:layout_above="@+id/counter"
+        android:gravity="center"
+        android:textSize="32sp"/>
+
+    <TextView
+        android:id="@+id/counter"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/s_zero"
+        android:textSize="96sp"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/sum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/ic_exposure_plus_1_white_24dp"
+        app:layout_anchor="@+id/appbar"
+        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
 
 </RelativeLayout>

@@ -1,7 +1,23 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.gdglima.materialdesigntemplate.NavViewActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android"    >
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/drawer_option_one"
+            android:checked="true"
+            android:icon="@drawable/ic_whatshot_black_24dp"
+            android:title="@string/s_option_one"/>
+
+        <item
+            android:id="@+id/drawer_option_two"
+            android:icon="@drawable/ic_adb_black_24dp"
+            android:title="@string/s_option_two"/>
+
+        <item
+            android:id="@+id/drawer_option_three"
+            android:icon="@drawable/ic_android_black_24dp"
+            android:title="@string/s_option_three"/>
+
+    </group>
+
 </menu>
